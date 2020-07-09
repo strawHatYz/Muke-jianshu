@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-
+import './index.css'
+import TodoItem from './components/TodoItem'
 
 class TodoList extends Component {
   // 最优先执行constyroctor
@@ -7,20 +8,27 @@ class TodoList extends Component {
     super(props);
     this.state = {
       inputValue: '',
-      list: ['学习英文','学习React'],
+      list:[],
     }
   }
   render() {
     return (
     <Fragment>
       <div>
-        <input value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}/>
+        {/* 多行注释 */}
+        <label htmlFor="inserArea">输入内容</label>
+        <input id="inserArea" className="input" value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}/>
         <button onClick={this.handleButtonClick.bind(this)}>提交</button>
       </div>
       <ul>
         {
           this.state.list.map((item,index) => {
-          return <li key={index} onClick={this.handleItemDelete.bind(this,index)}>{(index+1+' ')+item}</li>
+            return (
+              <div>
+                <TodoItem content={item,index}/>
+                 {/* return <li key={index} dangerouslySetInnerHTML={{__html:item}} onClick={this.handleItemDelete.bind(this,index)}></li> */}
+              </div>
+            )
           })
         }
       </ul>
