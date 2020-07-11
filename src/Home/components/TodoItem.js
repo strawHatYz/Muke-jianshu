@@ -1,15 +1,22 @@
 import React,{Component} from 'react'
  
 class TodoItem extends Component {
-  render () {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClcick.bind()
+    this.handleClick = this.handleClick.bind(this)
   }
-  return <div onClick={this.handleClick.bind(this)}>{this.props.content}</div>
+  render () {
+    let {content} = this.props
+    return (
+      <div onClick={this.handleClick.bind(this)}>
+        {content}
+      </div>
+    )
   }
   handleClick(){
-    alert(this.props.index)
+    const {deleteItem,index} = this.props
+    deleteItem(index)
+    
   }
 }
 export default TodoItem
