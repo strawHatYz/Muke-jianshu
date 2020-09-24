@@ -9,7 +9,7 @@ class TodoList extends Component {
     // 当组件的statr或props发生变化的时候，render函数就会重新执  行。
     this.state = {
       inputValue: '',
-      list: [],
+      list: []
     }
     this.handleButtonClick = this.handleButtonClick.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -22,7 +22,7 @@ class TodoList extends Component {
   }
   // 当组件离得state或props发生改变,render函数就会重新执行
   render() {
-    console.log('render')
+    console.log('render 渲染')
     return (
       <Fragment>
         <div>
@@ -56,6 +56,10 @@ class TodoList extends Component {
   
   componentDidUpdate(){
     console.log('componentDidUpdate','页面重新渲染后执行')
+  }
+  // 如果没有props参数，生命周期不会被执行
+  componentWillReceiveProps(){
+    console.log('componentWillReceiveProps','如果没有props参数，生命周期不会被执行')
   }
   getDodoItem() {
     return this.state.list.map((item, index) => {

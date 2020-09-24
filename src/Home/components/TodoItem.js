@@ -21,6 +21,16 @@ class TodoItem extends Component {
     deleteItem(index)
     
   }
+  // 当一个组件要从父组件接收参数，只要父组件单render被执行，子组件的声明周期就会被执行。
+  // 如果这个组件第一次存在父组件中，不会执行 
+  // 如果这个组件之前已经存在父组件中，才会执行
+  componentWillReceiveProps(){
+    console.log('child componentWillReceiveProps','当一个组件要从父组件接收参数，只要父组件单render被执行，子组件的声明周期就会被执行。')
+  }
+  // 当组件即将被从页面中剔除的时候，会被执行
+  componentWillUnmount(){
+    console.log('child componentWillUnmount 在组件被移除前的一瞬间这个组件将会执行')
+  }
 }
 // Prop Types 作为类型验证，验证父组件传值类型是否正确。
 TodoItem.propTypes = {
