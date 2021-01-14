@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELETE_INPUT_VALUE} from './actionTypes'
+import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELETE_INPUT_VALUE,INIT_LIST_ACTION} from './actionTypes'
 // 创建默认仓库数据
 const defaultState = {
   inputValue: '',
@@ -23,6 +23,11 @@ export default (state = defaultState,action)=>{
   if(action.type===DELETE_INPUT_VALUE){
     const newState = JSON.parse(JSON.stringify(state))
     newState.list.splice(action.index,1)
+    return newState
+  }
+  if(action.type===INIT_LIST_ACTION){
+    const newState = JSON.parse(JSON.stringify(state))
+    newState.list = action.data
     return newState
   }
   return state

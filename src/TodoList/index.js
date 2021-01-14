@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
-
 import store from './../store'
-import {getInputChangeAction,getAddItemAction,getDeleteItemAction} from './../store/actionCreators'
+import {getInputChangeAction,getAddItemAction,getDeleteItemAction,getTodoList} from './../store/actionCreators'
 import TodoListUi from './TodoListUi'
 class TodoList extends Component {
   constructor(props){
@@ -11,7 +10,7 @@ class TodoList extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.hanleStoreChange = this.hanleStoreChange.bind(this)
     this.handleButtonClick = this.handleButtonClick.bind(this)
-    this.handleItemDelect = this.handleItemDelect(this)
+    this.handleItemDelete = this.handleItemDelete.bind(this)
     // stroe.subscrib 只要发生改变,函数会自动执行内部环境
     store.subscribe(this.hanleStoreChange)
   }
@@ -21,8 +20,13 @@ class TodoList extends Component {
     list={this.state.list}
     handleInputChange={this.handleInputChange}
     handleButtonClick={this.handleButtonClick}
-    handleItemDelect={this.handleItemDelect}
+    handleItemDelete={this.handleItemDelete}
     />
+  }
+  componentDidMount(e){
+    const action = getTodoList()
+    store.dispatch(action)
+    console.log(action)
   }
   handleInputChange (params) {
     const action = getInputChangeAction(params.target.value)
@@ -37,7 +41,7 @@ class TodoList extends Component {
     // 把action传递给reducer
     store.dispatch(action)
   }
-  handleItemDelect(index) {
+  handleItemDelete(index) {
     const action = getDeleteItemAction(index);
     store.dispatch(action)
   }
