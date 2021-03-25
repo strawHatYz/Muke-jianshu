@@ -25,6 +25,7 @@ class TodoList extends Component {
     console.log('render 渲染')
     return (
       <Fragment>
+        text
         <div>
           {/* 多行注释 */}
           <label htmlFor="inserArea">输入内容</label>
